@@ -12,6 +12,12 @@
            //jquery에서 dom객체 뽑아오기
            var btn = $('#btn').get(0);
            console.log(btn)
+
+           //DOM을 jQuery 객체로 변환
+           var jqueryObj = $(btn);
+
+           var newDom = document.getElementById('btn');
+           console.log($(newDom));
         });
     </script>
 </head>
