@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script>
+       $(document).ready(function(){
+           var $btn = $('#btn');
+           console.log($btn)
+           //jquery에서 dom객체 뽑아오기
+           var btn = $('#btn').get(0);
+           console.log(btn)
+        });
+    </script>
+</head>
+<body>
+    <h2>jQuery 사용 해 보기</h2>
+    <hr>
+    <button id="btn">확인</button>
+</body>
+</html>
