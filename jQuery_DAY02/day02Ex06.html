@@ -20,7 +20,7 @@
             width: 100px;
         }
         #top_menu > li > p {
-            color: red;
+            color: deepskyblue;
             padding: 5px;
             margin: 0;
             width: 100px;
@@ -53,7 +53,6 @@
         }
         #ssub > li{
             padding: 0;
-            float: left;
             width: 130px;            
         }
         .underline{
@@ -114,19 +113,17 @@
                     color : 'green'                 
                 });              
             },function(){
-                $('#top_menu ul').hide('fast');
+                $('#top_menu ul').slideUp('fast');
                 $(this).css('backgroundColor','white')
             });
 
             //서브메뉴의 서브메뉴 hover
             $('#sub>li').hover(function(){
-                // $(this).css('textDecoration','underline')
                 $(this).addClass('underline')
                 $('#sub ul').hide();
                 $('#ssub',this).show('fast').css({
-                    left : 5.3 + 'em',
                     fontSize : 0.9 + 'em',
-                    color : 'navy'                   
+                    color : 'red'                   
                 }); 
             },function(){
                 $('#sub ul').hide('fast');
