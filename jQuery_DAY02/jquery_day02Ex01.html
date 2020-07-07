@@ -12,11 +12,30 @@
             float: left;
             list-style: none;
             margin: 10px;
+            border: 1px solid silver;
         }
     </style>
     <script src="http://code.jquery.com/jquery.js"></script>
     <script>
         $(document).ready(function(){
+            $('li>u').addClass('bg');
+            $('#myFavorites > li').addClass('horizontal');
+            $('#vue').on('click',function(){
+                alert(this.id);
+            });
+            $('.Node').click(function () {
+                alert('Node.js 프로그래밍')
+            });
+
+            //$('#myFavorites > li').css('backgroundColor','pink')
+            $('#myFavorites  li').css({
+                "backgroundColor" : 'skyblue',
+                color : 'navy'
+            });
+            var colors = ['red','green','blue','orange'];
+            $('#myFavorites  li').css('backgroundColor',function (i,j) {
+               return colors[i];
+              })
         })
     </script>
 </head>
@@ -25,8 +44,8 @@
     <ul id="myFavorites">
         <li><u>JavaScript</u></li>
         <li>jQuery</li>
-        <li class="sil">Node.js</li>
-        <li id="jquery"><u>V</u>ue.js</li>
+        <li class="Node">Node.js</li>
+        <li id="vue"><u>V</u>ue.js</li>
     </ul>
 </body>
 </html>
