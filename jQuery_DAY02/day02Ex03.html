@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.changeBtn').click(function () {
+                // $('.message').toggleClass('red');
+                // $('.message').addClass('red');
+                $('.message').toggle('slow', function () {
+                    $('.message').toggleClass('red');
+                    console.log($('body').css('backgroundColor'))
+                    if ($('body').css('backgroundColor') == 'rgb(255, 255, 0)') {
+                        $('body').css('backgroundColor', 'white')
+                    } else {
+                        $('body').css('backgroundColor', 'yellow')
+                    }
+                });
+            });
+        });
+
+    </script>
+</head>
+
+<body>
+    <button class="changeBtn">바꾸기</button>
+    <hr>
+    <p class="message">대접을 받으려면 먼저 남을 대접하라!</p>
+</body>
+
+</html>
