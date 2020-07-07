@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #top_menu ul {
+            display: none;
+        }
+
+        #top_menu>li>ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        #top_menu>li>ul>li {
+            list-style: none;
+            padding: 0 20px;
+            display: block;
+        }
+
+        #top_menu>li {
+            float: left;
+            width: 200px;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#top_menu>li').click(function () {
+                $('#top_menu > li > ul').css({
+                    display: 'none'
+                })
+                $('ul', this).show('fast');
+                
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <h1>길동이의 홈페이지</h1>
+    <hr>
+    <ul id="top_menu">
+        <li>
+            <p>Home</p>
+            <ul>
+                <li>sub-menu1</li>
+                <li>sub-menu2</li>
+                <li>sub-menu3</li>
+            </ul>
+        </li>
+        <li>
+            <p>Profile</p>
+            <ul>
+                <li>sub-menu1</li>
+                <li>sub-menu2</li>
+                <li>sub-menu3</li>
+            </ul>
+        </li>
+        <li>
+            <p>Gallery</p>
+            <ul>
+                <li>sub-menu1</li>
+                <li>sub-menu2</li>
+                <li>sub-menu3</li>
+            </ul>
+        </li>
+        <li>
+            <p>Board</p>
+            <ul>
+                <li>sub-menu1</li>
+                <li>sub-menu2</li>
+                <li>sub-menu3</li>
+            </ul>
+        </li>
+        <li>
+            <p>Guest</p>
+            <ul>
+                <li>sub-menu1</li>
+                <li>sub-menu2</li>
+                <li>sub-menu3</li>
+            </ul>
+        </li>
+    </ul>
+</body>
+
+</html>
