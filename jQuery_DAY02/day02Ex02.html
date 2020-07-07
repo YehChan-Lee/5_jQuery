@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red {color: red;}
+
+        .green {color: green;}
+
+        .gray {color: gray;}
+
+        .black {color: black;}
+    </style>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script>
+        var flag = false;
+        $(document).ready(function () {
+            $('.changeBtn').hover(function () {
+                $('a[href*="dotnet"]').addClass('red');
+                $('a[href$="aspx"]').addClass('green');
+                $('a[href^="mailto:"').addClass('gray');
+            },function(){
+                $('a[href*="dotnet"]').removeClass('red');
+                $('a[href$="aspx"]').removeClass('green');
+                $('a[href^="mailto:"').removeClass('gray');
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <button class="changeBtn">글자색 변경</button><br>
+    <a href="www.dotnetkorea.com">닷넷코리아</a>
+    <a href="www.visualAcademy.com/Default.aspx">비주얼아카데미</a>
+    <a href="mailto:beomjoon@outlook.com">이메일</a>
+</body>
+
+</html>
