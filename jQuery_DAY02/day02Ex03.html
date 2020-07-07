@@ -9,21 +9,24 @@
         .red {
             color: red;
         }
+        .bg{
+            background-color: yellow;
+        }
     </style>
     <script src="http://code.jquery.com/jquery.js"></script>
     <script>
         $(document).ready(function () {
             $('.changeBtn').click(function () {
-                // $('.message').toggleClass('red');
+                $('.message').toggleClass('red');
                 // $('.message').addClass('red');
                 $('.message').toggle('slow', function () {
-                    $('.message').toggleClass('red');
-                    console.log($('body').css('backgroundColor'))
-                    if ($('body').css('backgroundColor') == 'rgb(255, 255, 0)') {
-                        $('body').css('backgroundColor', 'white')
-                    } else {
-                        $('body').css('backgroundColor', 'yellow')
-                    }
+                    $('body').toggleClass('bg');
+                    // console.log($('body').css('backgroundColor'))
+                    // if ($('body').css('backgroundColor') == 'rgb(255, 255, 0)') {
+                    //     $('body').css('backgroundColor', 'white')
+                    // } else {
+                    //     $('body').css('backgroundColor', 'yellow')
+                    // }
                 });
             });
         });
