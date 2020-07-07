@@ -8,7 +8,7 @@
         #top_menu {
             padding: 0;
             overflow: hidden;
-            width: 510px;
+            width: 900px;
         }
         #top_menu ul {
             display: none;
@@ -29,13 +29,16 @@
         }
         #top_menu > li > ul {
             margin: 0;
-            padding: 10px;
-            border: 1px solid red;
-            width: 150px;
+            padding: 5px;
+            border: 0px solid red;
+            width: 300px;
+            overflow: hidden;
         }
         #top_menu > li > ul > li {
+            float: left;
             list-style: none;
-            padding: 0 5px;
+            padding: 0 5px;            
+
         }
     </style>
     <script src="http://code.jquery.com/jquery.js"></script>
@@ -49,24 +52,25 @@
             %>
             <li><p><%=menu.title%></p>
                 <ul>
-                    <li>sub-menu1</li>
-                    <li>sub-menu2</li>
-                    <li>sub-menu3</li>
+                    <%
+                    for(var j=0; j<menu.submenu.length; j++) { 
+                        var sub = menu.submenu[j];
+                    %>
+                        <li><%=sub.subName%></li>
+                    <% } %>
                 </ul>
             </li>
-            <% 
-            } 
-            %>
+            <% } %>
         </ul>
     </script>
 
     <script>
         var menuList = [
-            {title:'HOME', submenu:[{subName:'', url:''},{},{}]},
-            {title:'PROFILE', submenu:[{},{},{}]},
-            {title:'GALLERY', submenu:[{},{},{}]},
-            {title:'BOARD', submenu:[{},{},{}]},
-            {title:'GUEST', submenu:[{},{},{}]}
+            {title:'HOME', submenu:[{subName:'submenu1', url:''},{subName:'submenu2', url:''},{subName:'submenu3', url:''}]},
+            {title:'PROFILE', submenu:[{subName:'submenu1', url:''},{subName:'submenu2', url:''},{subName:'submenu3', url:''}]},
+            {title:'GALLERY', submenu:[{subName:'submenu1', url:''},{subName:'submenu2', url:''},{subName:'submenu3', url:''}]},
+            {title:'BOARD', submenu:[{subName:'submenu1', url:''},{subName:'submenu2', url:''},{subName:'submenu3', url:''}]},
+            {title:'GUEST', submenu:[{subName:'submenu1', url:''},{subName:'submenu2', url:''},{subName:'submenu3', url:''}]}
         ];
         $(document).ready(function () {
             var compiled = _.template($('#topMenuTemp').html());
