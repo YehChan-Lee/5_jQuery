@@ -20,25 +20,45 @@
             width: 100px;
         }
         #top_menu > li > p {
+            color: red;
             padding: 5px;
             margin: 0;
             width: 100px;
             text-align: center;
             box-sizing: border-box;
             border: 1px solid gray;
+            border-radius: 3px;
         }
-        #top_menu > li > ul {
-            margin: 0;
+        #sub {            
+            margin: 0 auto;
             padding: 5px;
-            border: 0px solid red;
-            width: 300px;
+            width: 600px;
+            height: 100px;
             overflow: hidden;
+            position: absolute;
         }
-        #top_menu > li > ul > li {
+        #sub > li {
             float: left;
+            width: 120px;
             list-style: none;
-            padding: 0 5px;            
-
+            padding: 0 5px;
+            align-content: center; 
+        }
+        #ssub {
+            list-style: none;
+            padding: 0 10px;
+            overflow: hidden;
+            width: 300px;
+            position:absolute;
+        }
+        #ssub > li{
+            padding: 0;
+            float: left;
+            width: 130px;            
+        }
+        .underline{
+            text-decoration: underline;
+            text-decoration-color: green;
         }
     </style>
     <script src="http://code.jquery.com/jquery.js"></script>
@@ -51,12 +71,21 @@
                 var menu = menuList[i];
             %>
             <li><p><%=menu.title%></p>
-                <ul>
+                <ul id="sub">
                     <%
                     for(var j=0; j<menu.submenu.length; j++) { 
                         var sub = menu.submenu[j];
                     %>
-                        <li><%=sub.subName%></li>
+                        <li><%=sub.subName%>
+                            <ul id="ssub">
+                                <%
+                                for(var w=0; w<sub.ssubmenu.length; w++) { 
+                                    var ssub = sub.ssubmenu[w];
+                                %>
+                                    <li><%=ssub.ssubName%></li>
+                                <% } %>
+                            </ul>                        
+                        </li>
                     <% } %>
                 </ul>
             </li>
@@ -66,22 +95,44 @@
 
     <script>
         var menuList = [
-            {title:'HOME', submenu:[{subName:'submenu1', url:''},{subName:'submenu2', url:''},{subName:'submenu3', url:''}]},
-            {title:'PROFILE', submenu:[{subName:'submenu1', url:''},{subName:'submenu2', url:''},{subName:'submenu3', url:''}]},
-            {title:'GALLERY', submenu:[{subName:'submenu1', url:''},{subName:'submenu2', url:''},{subName:'submenu3', url:''}]},
-            {title:'BOARD', submenu:[{subName:'submenu1', url:''},{subName:'submenu2', url:''},{subName:'submenu3', url:''}]},
-            {title:'GUEST', submenu:[{subName:'submenu1', url:''},{subName:'submenu2', url:''},{subName:'submenu3', url:''}]}
+            {title:'HOME', submenu:[{subName:'H_submenu1', url:'',ssubmenu:[{ssubName : "submenu1"},{ssubName : "submenu1"}]},{subName:'H_submenu2', url:'',ssubmenu:[{ssubName : "submenu2"},{ssubName : "submenu2"}]},{subName:'H_submenu3', url:'',ssubmenu:[{ssubName : "submenu3"},{ssubName : "submenu3"}]}]},
+            {title:'PROFILE', submenu:[{subName:'P_submenu1', url:'',ssubmenu:[{ssubName : "submenu1"},{ssubName : "submenu1"}]},{subName:'P_submenu2', url:'',ssubmenu:[{ssubName : "submenu2"},{ssubName : "submenu2"}]},{subName:'P_submenu3', url:'',ssubmenu:[{ssubName : "submenu3"},{ssubName : "submenu3"}]}]},
+            {title:'GALLERY', submenu:[{subName:'G_submenu1', url:'',ssubmenu:[{ssubName : "submenu1"},{ssubName : "submenu1"}]},{subName:'G_submenu2', url:'',ssubmenu:[{ssubName : "submenu2"},{ssubName : "submenu2"}]},{subName:'G_submenu3', url:'',ssubmenu:[{ssubName : "submenu3"},{ssubName : "submenu3"}]}]},
+            {title:'BOARD', submenu:[{subName:'B_submenu1', url:'',ssubmenu:[{ssubName : "submenu1"},{ssubName : "submenu1"}]},{subName:'B_submenu2', url:'',ssubmenu:[{ssubName : "submenu2"},{ssubName : "submenu2"}]},{subName:'B_submenu3', url:'',ssubmenu:[{ssubName : "submenu3"},{ssubName : "submenu3"}]}]},
+            {title:'GUEST', submenu:[{subName:'G2_submenu1', url:'',ssubmenu:[{ssubName : "submenu1"},{ssubName : "submenu1"}]},{subName:'G2_submenu2', url:'',ssubmenu:[{ssubName : "submenu2"},{ssubName : "submenu2"}]},{subName:'G2_submenu3', url:'',ssubmenu:[{ssubName : "submenu3"},{ssubName : "submenu3"}]}]}
         ];
         $(document).ready(function () {
             var compiled = _.template($('#topMenuTemp').html());
             $('nav').html(compiled({menuList: menuList}) );
-
-            $('#top_menu > li').click(function() {
-                //$('ul', this).css({display:'block'});
-                //$('ul', this).toggle('fast');
-                $('#top_menu ul').hide();
-                $('ul', this).show('fast');
+            //서브메뉴 hover
+            $('#top_menu > li').hover(function() {
+                $(this).css('backgroundColor','aliceblue')
+                $('#top_menu ul').hide('fast');
+                $('#sub',this).slideDown('fast').css({
+                    left : 5.35 + 'em',
+                    fontSize : 0.9 + 'em',
+                    color : 'green'                 
+                });              
+            },function(){
+                $('#top_menu ul').hide('fast');
+                $(this).css('backgroundColor','white')
             });
+
+            //서브메뉴의 서브메뉴 hover
+            $('#sub>li').hover(function(){
+                // $(this).css('textDecoration','underline')
+                $(this).addClass('underline')
+                $('#sub ul').hide();
+                $('#ssub',this).show('fast').css({
+                    left : 5.3 + 'em',
+                    fontSize : 0.9 + 'em',
+                    color : 'navy'                   
+                }); 
+            },function(){
+                $('#sub ul').hide('fast');
+                $(this).removeClass('underline')
+            })
+
          });
     </script>
 </head>
