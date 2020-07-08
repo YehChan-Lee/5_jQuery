@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="../js/underscore.js"></script>
+
+    <script id="listTemp" type="text/template">
+    <table border='1'>
+    <ul>
+        <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>주소</th>
+            <th>나이</th>
+        </tr>
+        <% for(var i=0;i<jsonList.length;i++){
+            var obj = jsonList[i]; %>
+            <tr>       
+            <td><%=obj.no%></td>
+            <td><%=obj.name%></td>
+            <td><%=obj.address%></td>
+            <td><%=obj.age%></td>
+            </tr>
+        <% } //end of for %>
+    </ul>
+    </table>
+</script>
+
+</head>
+
+<body>
+    <h3>사람 목록</h3>
+    <hr>
+    <div id="listArr">
+
+    </div>
+    <hr>
+    <button id="loadBtn">목록 불러오기</button>
+    <input type="text" id="inputText">
+    <input type="submit" id="submitBtn" value="검색">
+
+    <script>
+        var jsonList = null;
+        var listArr = document.getElementById('listArr');
+        var loadBtn = document.getElementById('loadBtn');
+        var listTmp = document.getElementById('listTemp');
+        var inputText = document.getElementById('inputText');
+        var submitBtn = document.getElementById('submitBtn');
+
+        var compiled = _.template(listTmp.innerHTML);
+
+        loadBtn.onclick = function () {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (this.status == 200 && this.readyState == 4) {
+                    jsonList = JSON.parse(this.responseText.trim());
+                    jsonList = jsonList.students;
+                    listArr.innerHTML = compiled({ jsonList: jsonList });
+
+                    submitBtn.onclick = function () {
+                        console.log('검색버튼 눌림')
+                        var name = inputText.value;
+                        jsonList = JSON.parse(xhr.responseText.trim());
+                        var newList = jsonList.students;
+                        var newArr = newList.filter(function (obj) {
+                            return obj.name == name ? obj : null;
+                        });
+                        listArr.innerHTML = compiled({ jsonList: newArr });
+                    }
+                }
+            }
+            xhr.open('GET', '../json/data.json', true);
+            xhr.send();
+        }
+    </script>
+</body>
+</html>

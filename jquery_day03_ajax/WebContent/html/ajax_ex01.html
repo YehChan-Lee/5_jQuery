@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+    <script>
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function () { 
+            if(this.status == 200 && this.readyState == 4){
+                var obj = JSON.parse(this.responseText.trim())
+                console.log(obj.user,obj.msg)
+            }
+         }
+         var param = '?user=PARK&msg=OK';
+         xhr.open('GET','../jsp/server_data.jsp'+ param,true);
+         xhr.send();
+    </script>
+
+</body>
+</html>
