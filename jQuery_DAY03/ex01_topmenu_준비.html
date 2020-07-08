@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>    <style>
+    .top_menu {
+        padding: 0;
+        /*overflow: hidden;*/
+        width: 760px;
+        height:40px;
+    }
+    .top_menu > li {
+        list-style: none;
+        float: left;
+        box-sizing: border-box;
+        width: 150px;
+    }
+    .top_menu > li > p {
+        padding: 5px;
+        margin: 0;
+        width: 150px;
+        text-align: center;
+        box-sizing: border-box;
+        border: 1px solid gray;
+    }
+    .sub_menu {
+        display: none;
+    }
+    .sub_menu {
+        margin: 0;
+        padding: 10px;
+        border: 0px solid red;
+        width: 150px;
+        box-sizing: border-box;
+    }
+    .sub_menu > li {
+        list-style: none;
+        padding: 0 5px;
+    }
+    .sub_menu > li > p {
+        margin: 0;
+        padding: 5px;
+    }
+    .sub_menu > li > p:hover {
+        background: antiquewhite;
+    }
+    .sub_3depth {
+        visibility: hidden;
+        padding: 0;
+        border: 0px solid green;
+        position: absolute;
+        margin-left: 120px;
+        margin-top: -30px;
+        box-sizing: border-box;
+    }
+    .sub_3depth li {
+        list-style: none;
+        padding: 5px;
+    }
+</style>
+    <script src="js/jquery.js"></script>
+    <script src="js/underscore.js"></script>
+
+    <script id="topMenuTemp" type="text/template">
+
+    </script>
+
+    <script>
+        var menuList = [
+            {title:'HOME', submenu:[{subName:'home-sub1', url:''},{subName:'home-sub1', url:''},{subName:'home-sub1', url:''}]},
+            {title:'PROFILE', submenu:[
+                    {
+                        subName:'home-sub1', url:'',
+                        sub3depth:[{subName:'profile3depth1', url:''},{subName:'profile3depth1', url:''},{subName:'profile3depth1', url:''}]},
+                    {subName:'home-sub1', url:''}]},
+            {title:'GALLERY',
+                submenu:[{
+                subName:'home-sub1',
+                    url:'',
+                    sub3depth:[{subName:'gallery3depth1', url:''},{subName:'gallery3depth1', url:''},{subName:'gallery3depth1', url:''}]
+                }, {subName:'home-sub1', url:''},{subName:'home-sub1', url:''}]},
+            {title:'BOARD'},
+            {title:'GUEST'}
+        ];
+
+        $(document).ready(function () {
+            //.....
+        });
+    </script>
+</head>
+<body>
+
+<div id="page">
+    <header>
+        <h1>범준쌤 코딩교실</h1>
+        <nav>
+            <!--<ul class="top_menu">
+                <li><P>HOME</P>
+                    <ul class="sub_menu">
+                        <li><p>sub1</p>
+                        </li>
+                        <li><p>sub2</p>
+                            <ul class="sub_3depth">
+                                <li><p>sub1</p></li>
+                                <li><p>sub2</p></li>
+                                <li><p>sub3</p></li>
+                            </ul>
+                        </li>
+                        <li><p>sub3</p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>-->
+        </nav>
+    </header>
+</div>
+
+</body>
+</html>
