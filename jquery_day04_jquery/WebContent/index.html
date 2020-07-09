@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <style>
+        nav ul.top_menu {
+            padding: 0;
+        }
+
+        nav ul.top_menu>li {
+            float: left;
+            list-style: none;
+            width: 200px;
+            border: 1px solid gray;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        #main {
+            clear: both;
+            border: 1px solid gray;
+            height: 400px;
+            width: 600px;
+            box-sizing: border-box;
+
+        }
+
+        hr {
+            clear: both;
+            width: 600px;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script>
+        var incPages = ['Inc/home.txt','Inc/lecture.txt','Inc/contact.txt'];
+        $(document).ready(function () {
+            $('header').load('Inc/header.txt', function () {
+                $('nav .top_menu li').each(function(index,item){
+                    item.inc_page = incPages[index];
+                });
+                $('nav .top_menu li').click(function (event) {
+                    $('#main').load(this.inc_page,function(){
+
+                    });
+                });
+            });
+            $('#main').load('Inc/home.txt');
+        });
+    </script>
+</head>
+
+<body>
+    <div id="page">
+        <header>
+            <!--inc/header.txt-->
+        </header>
+        <div id="main">
+            <!--inc/home.txt-->
+        </div>
+        <footer>
+            <address>서울시 종로구 견지동</address>
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script>
+    $(document).ready(function(){
+           $('#pwd').keyup(function(){
+               $('#lblError').text('');
+           });
+           $('#pwdConfirm').keyup(function(){
+               if($('#pwdConfirm').val() != $('#pwd').val()){
+                $('#lblError').html('<b>암호가 틀립니다.</b>');
+               }else{
+                $('#lblError').html('<b>암호가 일치합니다.</b>');
+               }
+           })
+    });
+
+
+</script>
+<body>
+    <h1>keyup 이벤트</h1>
+    <table style="border:1px solid skyblue">
+        <tr>
+            <td>암호:</td>
+            <td><input type="password" id="pwd" size="20"></td>
+        </tr>
+        <tr>
+            <td>암호확인:</td>
+            <td><input type="password" id="pwdConfirm" size="20"></td>
+        </tr>
+    </table>
+    <div id="lblError">암호를 입력하세요.</div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>범준쌤 코딩교실</h1>
+    <hr>
+    <iframe onload= resizeFrame(this) id="myFrame" src="list.html" width="600" height="400" frameborder = 0></iframe>
+    <hr>
+    <address>서울시 종로구 관철동</address>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script>
+        function resizeFrame(iframe){
+            var innerBody = iframe.contentWindow.document.body;
+            var newHeight = innerBody.offsetHeight + 50 + 'px';
+            console.log(innerBody.style.height);
+            iframe.style.height = newHeight;            
+        }
+    </script>
+</body>
+</html>

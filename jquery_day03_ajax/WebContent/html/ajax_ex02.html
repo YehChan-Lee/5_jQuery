@@ -39,9 +39,14 @@
     </div>
     <hr>
     <button id="loadBtn">목록 불러오기</button>
-    <input type="text" id="inputText">
+    <input type="text" id="inputText"></select>
     <input type="submit" id="submitBtn" value="검색">
-
+    <select id="list">
+        <option>no</option>
+        <option>name</option>
+        <option>address</option>
+        <option>age</option>
+    </select>
     <script>
         var jsonList = null;
         var listArr = document.getElementById('listArr');
@@ -49,32 +54,65 @@
         var listTmp = document.getElementById('listTemp');
         var inputText = document.getElementById('inputText');
         var submitBtn = document.getElementById('submitBtn');
+        var selectbox = document.getElementById('list');
 
         var compiled = _.template(listTmp.innerHTML);
-
+        var xhr = new XMLHttpRequest();
         loadBtn.onclick = function () {
-            var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (this.status == 200 && this.readyState == 4) {
                     jsonList = JSON.parse(this.responseText.trim());
                     jsonList = jsonList.students;
                     listArr.innerHTML = compiled({ jsonList: jsonList });
-
-                    submitBtn.onclick = function () {
-                        console.log('검색버튼 눌림')
-                        var name = inputText.value;
-                        jsonList = JSON.parse(xhr.responseText.trim());
-                        var newList = jsonList.students;
-                        var newArr = newList.filter(function (obj) {
-                            return obj.name == name ? obj : null;
-                        });
-                        listArr.innerHTML = compiled({ jsonList: newArr });
-                    }
                 }
             }
             xhr.open('GET', '../json/data.json', true);
             xhr.send();
         }
+            submitBtn.onclick = function () {
+                var num = selectbox.selectedIndex;
+                selectbox.onchange = function () {
+                    switch (num) {
+                        case 0:
+                            var no = selectbox.value;
+                            jsonList = JSON.parse(xhr.responseText.trim());
+                            var newList = jsonList.students;
+                            var newArr = newList.filter(function (obj) {
+                                return obj.no == no ? obj : null;
+                            });
+                            listArr.innerHTML = compiled({ jsonList: newArr });
+                            break;
+                        case 1:
+                            var name = selectbox.value;
+                            jsonList = JSON.parse(xhr.responseText.trim());
+                            var newList = jsonList.students;
+                            var newArr = newList.filter(function (obj) {
+                                return obj.name == name ? obj : null;
+                            });
+                            listArr.innerHTML = compiled({ jsonList: newArr });
+                            break;
+                        case 2:
+                            var address = selectbox.value;
+                            jsonList = JSON.parse(xhr.responseText.trim());
+                            var newList = jsonList.students;
+                            var newArr = newList.filter(function (obj) {
+                                return obj.address == address ? obj : null;
+                            });
+                            listArr.innerHTML = compiled({ jsonList: newArr });
+                            break;
+                        case 3:
+                            var age = selectbox.value;
+                            jsonList = JSON.parse(xhr.responseText.trim());
+                            var newList = jsonList.students;
+                            var newArr = newList.filter(function (obj) {
+                                return obj.age == age ? obj : null;
+                            });
+                            listArr.innerHTML = compiled({ jsonList: newArr });
+                            break;
+                    }
+                }
+            }
     </script>
 </body>
+
 </html>
