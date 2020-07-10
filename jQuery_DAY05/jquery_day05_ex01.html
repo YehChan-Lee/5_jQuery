@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 50px;
+            height: 40px;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script>
+        var colors = ["red","green","blue","pink"];
+
+        $(document).ready(function(){
+            $('h3').each(function(index){
+                $(this).css('backgroundColor',colors[index]);
+            });
+            var img = '<img src="imgs/람쥐.jpg">'
+
+            $('#prepend').click(function(){
+                $('.a').prepend(img);
+            });
+            $('#append').click(function(){
+                $('.b').append(img);
+            });
+            $('#prependTo').click(function(){
+                $(img).prependTo('.c');
+            });
+            $('#appendTo').click(function(){
+                $(img).appendTo('.d');
+            });
+        })
+    </script>
+</head>
+<body>    
+    <input type="button" id="prepend" value="prepend">
+    <input type="button" id="append" value="append">
+    <input type="button" id="prependTo" value="prependTo">
+    <input type="button" id="appendTo" value="appendTo">
+
+    <h3 class="a">prepend  영역</h3>
+    <h3 class="b">append 영역</h3>
+    <h3 class="c">prependTo 영역</h3>
+    <h3 class="d">appendTo 영역</h3>
+</body>
+</html>
