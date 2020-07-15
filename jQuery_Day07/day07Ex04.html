@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <style>
+        #myCanvas {
+            background-color: aliceblue;
+            /* width: 600px;
+            height: 400px; */
+        }
+    </style>
+    <script>
+
+        $(document).ready(function () {
+            var context = $('#myCanvas')[0].getContext('2d');
+            $('#myCanvas').attr({ 'width': '600', "height": '400' });            
+            // for (var i = 0; i < 5; i++) {
+            //     context.rect(i * 30 + 10, i * 10 + 10, 50, 50);
+            // }
+            var cw = parseInt($('#myCanvas').css('width'));
+            var ch = parseInt($('#myCanvas').css('height'));
+            var i = 0;
+            var itv = setInterval(() => {
+                context.clearRect(0,0,cw,ch);
+                context.beginPath();
+                context.rect(i * 30 + 10, i * 10 + 10, 50, 50);
+                context.strokeStyle = "magenta";
+                context.stroke();
+                i++;
+                if(i == 10){
+                    clearInterval(itv);
+                }
+            }, 100);
+        })
+    </script>
+</head>
+
+<body>
+    <h3>Canvas 활용하기</h3>
+    <hr>
+    <canvas id="myCanvas"></canvas>
+</body>
+
+</html>

@@ -1,39 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        #bigimg{
-            border: 1px solid black;
-            width: 400px;
-            height: 300px;
+        /* .btns>button:nth-child(1) {
+            background-color: lemonchiffon;
+        } */
+        .imgs li:nth-child(1){
+            background: url('imgs/bannerImg01.jpg')left top/800px 400px;
+        }
+        .imgs li:nth-child(2){
+            background: url('imgs/bannerImg02.jpg')left top/800px 400px;
+        }
+        .imgs li:nth-child(3){
+            background: url('imgs/bannerImg03.jpg')left top/800px 400px;
+        }
+        .imgs li:nth-child(4){
+            background: url('imgs/bannerImg04.jpg')left top/800px 400px;
+        }
+        .imgs li{
+            width: 800px;
+            height: 400px;
+            background-repeat: no-repeat;
+            color : yellowgreen;
+            text-shadow: 2px 2px 2px black;
+            text-align: center;
+            font-size: 24px;
+            list-style: none;
+            float: left;
+        }
+        .imgs{
+            padding: 0;
+            width: 3200px;            
+        }
+        .banner,.imgs{
+            position: relative;
+            left:0;
+            transition: left cubic-bezier(0.6, 0.04, 0.98, 0.335) .5s;
+        }
+        .btns{
+            position: absolute;
+            left : 330px;
+            top: 360px;
+        }
+        .btns button{
+           box-shadow: 2px 2px 2px black;
+           border: 0px;
+        }
+        .banner{
+            overflow: hidden;
         }
     </style>
     <script src="http://code.jquery.com/jquery.js"></script>
     <script>
-        $(document).ready(function(){
-            $('#product img').attr({
-                width : 100,
-                height : 75
-            });
-            $('#product img').mouseover(function () {
-                var imgSrc = $(this).attr("src");
+        $(document).ready(function () {
+            $('.btns>button:nth(0)').css('backgroundColor', 'lemonchiffon');
+            $('.btns > button').click(function () {
+                $('.btns > button').css('backgroundColor', '');
+                $(this).css('backgroundColor', 'lemonchiffon');
 
-                var img = "<img src ='"+ imgSrc + "'width ='400' height='300'>"
-                $('#bigimg').html(img);
-              });
+                var index = $(this).attr('data-index');
+                var left = index*800*-1;
+
+                $('.imgs').css('left',left+'px');
+            });
         });
     </script>
 </head>
-<body>  
-    <div id="product">
-    <img src="imgs/람쥐.jpg">
-    <img src="imgs/2.png">
-    <img src="imgs/3.png">
 
-    <div id="bigimg"></div>
-</div>
+<body>
+    <div class="banner">
+        <ul class="imgs">
+            <li>what a wonderful world~</li>
+            <li></li>
+            <li></li>
+            <li></li>           
+        </ul>
+        <div class="btns">
+            <button data-index="0">1</button>
+            <button data-index="1">2</button>
+            <button data-index="2">3</button>
+            <button data-index="3">4</button>
+        </div>
+    </div>
 </body>
+
 </html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var newWin = null;
+        function load(URL) {
+            newWin = window.open(URL, "myWin",
+                "left=300,top=300,width=600,height=400");
+        }
+        function newWinClose() {
+            if (newWin == null || newWin.closed) {
+                alert('이미 창이 닫혀있습니다.')
+                return;
+            }else{
+                newWin.close();
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h3>window.open()으로 window 열기</h3>
+    <hr>
+    <a href="javascript:load('http://www.graceland.com')">엘비스프레슬리</a><br>
+    <a href="javascript:newWinClose()">새 창 닫기</a><br>
+    <a href="javaScript:window.close()">현재 윈도우 닫기</a>
+    비밀 번호 : <input type="password" id="pwd">
+</body>
+
+</html>

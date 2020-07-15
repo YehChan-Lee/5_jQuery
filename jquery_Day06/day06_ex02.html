@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="img/네이버로고.JPEG" id="logo">
+    <p id="p"></p>
+
+    <script>
+        var logo = document.getElementById('logo');
+        var timerId = null;
+        var intervalId = null;
+        logo.onmouseover = function(){
+            titmerID = setTimeout('reload("http://www.naver.com")',5000);
+            showMessage();
+        }
+        logo.onmouseout = function(){
+            if(timerId != null){
+                clearTimeout(timerId);
+            }
+            clearMessage();
+        }
+        function reload(URL){
+            window.location = URL;
+        }
+        function showMessage(){
+            var cnt = 5;
+            intervalId = setInterval(()=>{
+                document.getElementById('p').innerText = '타이머 작동 >> ' + cnt + '초'
+                cnt--;
+            },1000);
+        }
+        function clearMessage(){
+            clearInterval(intervalId);
+        }
+    </script>
+</body>
+</html>
